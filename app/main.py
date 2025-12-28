@@ -13,19 +13,19 @@ class Distance:
 
     def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
-            new_km = self.km + other.km
+            return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
-            new_km = self.km + other
-        else:
-            return NotImplemented
-        return Distance(new_km)
+            return Distance(self.km + other)
+        return NotImplemented
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
+            return self
         elif isinstance(other, (int, float)):
             self.km += other
-        return self
+            return self
+        return NotImplemented
 
     def __mul__(self, distance: int | float) -> Distance:
         if isinstance(distance, (int, float)):
